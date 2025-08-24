@@ -15,6 +15,36 @@ This app demonstrates a production-ready architecture with:
 
 ---
 
+🔐 Setup Guide
+
+- Create a Firebase project
+- https://console.firebase.google.com
+
+Register your app(s):
+
+Android, iOS: download google-services.json (Android) or GoogleService-Info.plist (iOS)
+
+Web: copy Firebase config snippet to web/index.html
+
+Enable Phone Authentication
+In Firebase Console: Auth > Sign-in method
+
+Platform configuration:
+
+Android: add internet permissions, update Gradle, place google-services.json
+
+iOS: configure URL types, add GoogleService-Info.plist
+
+Web: add domain (e.g., localhost) to Firebase hosting/allowed domains
+
+Initialize Firebase
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
 ✨ Features  
 
 🔑 Authentication  
@@ -56,3 +86,23 @@ lib/
 - Tap item → View details
 - Use ➕ button → Create object (JSON input)
 - Edit/Delete objects → with confirmation dialogs
+
+⚠️ Limitations
+
+
+- SMS delivery for phone auth may not work in all regions or emulator configs
+- Firebase phone auth is not available on desktop platforms
+- No UI for reCAPTCHA fallback on web
+- No advanced error recovery (e.g., rate limiting, auth throttling)
+- Minimal handling of edge cases (multi-factor, repeated invalid code)
+
+🚧 Future Improvements
+
+
+- Alerting for blocked/invalid numbers
+- Integration with more providers (Google, Apple, etc.)
+- Advanced error handling and analytics reporting
+- UI/UX polish, phone field masking, and accessibility improvements
+
+Drive Link:
+https://drive.google.com/drive/folders/1VksQSmnhlwWVjxF1ZoKCbglnqvQOIVm4?usp=sharing
